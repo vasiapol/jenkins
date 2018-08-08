@@ -1,3 +1,4 @@
+#!groovy​
 node{
     stage('SCM Checkout'){
         git 'https://github.com/vasiapol/hello-world-war.git'
