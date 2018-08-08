@@ -10,6 +10,6 @@ node{
     stage ('Deploy tomcat'){
         sh 'sshpass -p \'55555' scp -P 22 target/*.war root@192.168.103.220:/var/lib/tomcat/webapps/'
     }
-    }
+}
 
 
