@@ -1,4 +1,4 @@
-#!groovy​
+#!groovy
 
 node{
     stage('SCM Checkout'){
@@ -12,4 +12,4 @@ node{
     }
 }
 
-*\
+
