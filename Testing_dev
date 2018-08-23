@@ -6,6 +6,8 @@ node {
   remote.password = '123456123'
   remote.allowAnyHosts = true
  
+  branches: '{Dev}':  
+  
   stage('Pulling changes') {
     sshCommand remote: remote, command: "cd API_Server_Demo;git checkout Dev; git pull origin Dev"
   }
