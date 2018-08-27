@@ -1,0 +1,15 @@
+node {
+  def remote = [:]
+  remote.name = 'test'
+  remote.host = "${TESTHOST}"
+  remote.user = "${TESTUSER}"
+  remote.password = "${TESTPASSWORD}"
+  remote.allowAnyHosts = true
+ 
+  stage('Restarting API') {
+    sshCommand remote: remote, command: "systemctl restart API"
+  }
+  stage('Runing tests') {
+    sshCommand remote: remote, command: "newman run API_TESTS.json"
+  }
+}  
