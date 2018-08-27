@@ -1,0 +1,15 @@
+node {
+  def remote = [:]
+  remote.name = 'prod'
+  remote.host = "${PRODHOST}"
+  remote.user = "${PRODUSER}"
+  remote.password = "${PRODPASSWORD}"
+  remote.allowAnyHosts = true
+ 
+  stage('Pulling changes') {
+    sshCommand remote: remote, command: "cd API_Server_Demo;git pull "
+  }
+  stage('Restarting API') {
+    sshCommand remote: remote, command: "systemctl restart API"
+  }
+}
