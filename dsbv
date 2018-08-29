@@ -1,0 +1,45 @@
+   pipeline {
+        agent any
+  
+        stages {
+                 
+            stage('Pulling changes') {
+                steps {
+                    script {
+                        def remote = [:] 
+                            remote.name = 'test'
+                            remote.host = "${TESTHOST}"
+                            remote.user = "${TESTUSER}"
+                            remote.password = "${TESTPASSWORD}"
+                            remote.allowAnyHosts = true
+                      
+                            stage('Pulling changes') {
+                        
+                                 sshCommand remote: remote, command: "cd API_Server_Demo;git checkout Dev; git pull origin Dev"
+                       
+                            }         
+                         
+          
+      
+                            stage('Restarting API') {
+               
+                  
+                                sshCommand remote: remote, command: "systemctl restart API"
+                  
+                            }
+        
+  
+                            stage('Runing tests') {
+                
+                                sshCommand remote: remote, command: "newman run API_TESTS.json"
+                            }
+                       
+                    }
+                }
+            }
+        }
+   
+    }
+
+
+
