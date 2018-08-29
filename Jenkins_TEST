@@ -20,7 +20,7 @@
                       
                             stage('Pulling changes') {
                         
-                                 sshCommand remote: remote, command: "cd API_Server_Demo;git checkout Dev; git pull origin Dev"
+                                 sshCommand remote: remote, command: "cd API_Server_Demo;git pull;git checkout Dev"
                        
                             } 
 
